@@ -19,7 +19,7 @@ gem 'bootstrap-social-rails'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -27,6 +27,7 @@ gem 'bootstrap-social-rails'
 group :development, :test do
   gem 'sqlite3'
   gem 'byebug', platform: :mri
+  gem "minitest", "5.10.1"
 end
 
 group :development do
