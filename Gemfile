@@ -28,6 +28,7 @@ group :development, :test do
   gem 'sqlite3'
   gem 'byebug', platform: :mri
   gem "minitest", "5.10.1"
+  gem 'pry'
 end
 
 group :development do

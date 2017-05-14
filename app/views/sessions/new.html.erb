@@ -1,0 +1,19 @@
+<h1 class="text-center">Login to your account</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <%= form_for(:session, url: login_path) do |f| %>
+        
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+        
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+        
+        <%= f.submit "Log in", class: "btn btn-primary" %>
+      <% end %>  
+      <p>New user? <%= link_to "Sign up now!", new_user_path %></p>
+    </div>
+  </div>
+</div>
