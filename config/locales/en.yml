@@ -1,0 +1,13 @@
+en:
+  home:
+    title: "Ecommerce29"
+  nav:
+    tognav: "Toggle Navigation"
+  pages:
+    home: "Welcome to Ecommerce"
+    about: "About"
+    news: "News"
+    products: "Products"
+  users:
+    login: "Log in"
+    signup: "Get Started"
