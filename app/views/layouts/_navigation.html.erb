@@ -1,0 +1,32 @@
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse"
+      data-target="#navbar-collapse" aria-expanded="false">
+        <span class="sr-only"><%= t("nav.tognav") %></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <%= link_to t("home.title"), "/", class: "navbar-brand" %>
+    </div>
+    <div class="collapse navbar-collapse" id="navbar-collapse">
+      <ul class="nav navbar-nav ">
+        <li><%= link_to t("pages.about"), about_path %></li>
+        <li><%= link_to t("pages.news"), news_path %></li>
+        <li><%= link_to t("pages.products"), "" %></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to t("users.login"), "" %>
+        </li>
+        <li>
+          <p class="navbar-btn">
+            <%= link_to t("users.signup"), new_user_path, class: 'btn btn-xs btn-primary signin' %>
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
