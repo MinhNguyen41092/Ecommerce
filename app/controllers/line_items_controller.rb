@@ -4,7 +4,7 @@ class LineItemsController < ApplicationController
   before_action :load_line_item, only: [:update, :destroy]
 
   def create
-    @line_item = @cart.add_product @product
+    @line_item = add_product @product, @cart
     @line_item.price = @product.price
     if @line_item.save
       flash[:success] = t "line_items.create_success"
