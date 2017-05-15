@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
   def index
     @products = Product.valid_products.order_newest.page(params[:page]).
       per Settings.items_per_pages
+    @cart = Cart.find_by id: session[:cart_id]
   end
 
   def new

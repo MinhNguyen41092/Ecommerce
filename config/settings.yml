@@ -7,3 +7,4 @@ max_des: 140
 items_per_pages: 9
 show_img_size: "260x260"
 index_img_size: "80x150"
+unit: "VND"

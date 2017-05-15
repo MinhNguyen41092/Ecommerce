@@ -1,6 +1,8 @@
 class Product < ApplicationRecord
   belongs_to :user
+  has_many :line_items
   before_create :approve_product
+  before_destroy :not_referenced_by_line_item
   validates :title, :description, :image_url, presence: true
   validates :title, uniqueness: true, length: {maximum: Settings.max_name}
   validates :description, length: {maximum: Settings.max_des}
@@ -16,5 +18,12 @@ class Product < ApplicationRecord
   def approve_product
     return self.is_approved = true if self.user.is_admin
     self.is_approved = false
+  end
+
+  def not_referenced_by_line_item
+    unless line_items.empty?
+      flash[:danger] = "This item is in a cart"
+      throw :abort
+    end
   end
 end
