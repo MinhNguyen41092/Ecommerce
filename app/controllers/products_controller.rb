@@ -1,9 +1,11 @@
 class ProductsController < ApplicationController
+  include ProductLib
   before_action :load_product, except: [:index, :new, :create]
   before_action :verify_admin, only: [:edit, :update, :destroy]
+  before_action :load_categories, except: :destroy
 
   def index
-    @products = Product.valid_products.order_newest.page(params[:page]).
+    @products = products_search(params[:search]).order_newest.page(params[:page]).
       per Settings.items_per_pages
     @cart = Cart.find_by id: session[:cart_id]
   end
@@ -17,7 +19,7 @@ class ProductsController < ApplicationController
     @product.user = current_user
     if @product.save
       flash[:success] = t "products.create"
-      redirect_to root_path
+      redirect_to products_path
     else
       render :new
     end
@@ -54,7 +56,11 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
+  def load_categories
+    @categories = Category.all
+  end
+
   def product_params
-    params.require(:product).permit :title, :description, :image_url, :price
+    params.require(:product).permit :title, :description, :image_url, :price, category_ids: []
   end
 end

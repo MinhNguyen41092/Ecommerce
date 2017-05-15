@@ -23,6 +23,9 @@
           <% else %>
             <li><%= link_to t("products.suggest"), new_product_path %></li>
           <% end %>
+          <% if @cart %>
+            <%= link_to t("carts.show"), cart_path(@cart), class:"btn btn-xs btn-primary cart" %>
+          <% end %>
         <% end %>
       </ul>
       <ul class="nav navbar-nav navbar-right">

@@ -20,7 +20,7 @@ gem "config"
 gem "kaminari", git: "git://github.com/amatsuda/kaminari.git", branch: "master"
 gem "figaro"
 # Use Redis adapter to run Action Cable in production
-# gem "redis", "~> 3.0"
+gem "redis", "~> 3.0"
 # Use Capistrano for deployment
 # gem "capistrano-rails", group: :development
 

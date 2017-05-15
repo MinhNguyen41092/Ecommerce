@@ -1,3 +1,4 @@
+
 *.rbc
 capybara-*.html
 .rspec
@@ -49,13 +50,6 @@ config/initializers/config.rb
 
 # Hide images
 app/assets/images
-
-db/schema.rb
-Gemfile.lock
-db/migrate
-app/views/order_mailer
-app/views/orders/update.js.erb
-app/views/orders/destroy.js.erb
 
 # Ignore application configuration
 /config/application.yml

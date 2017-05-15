@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_many :products
   has_many :orders
+  has_many :messages
+  has_many :chatrooms, through: :messages
   after_initialize :init
   attr_accessor :remember_token
   before_save{self.email = email.downcase}

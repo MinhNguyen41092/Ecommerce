@@ -16,6 +16,14 @@
         <%= f.label :price %>
         <%= f.text_field :price %>
 
+        <%= f.label :category_id, t("categories.category") %>
+        <%= f.collection_select :category_ids, @categories.main_categories,
+          :id, :name, {}, {multiple: true} %>
+
+        <%= f.label :category_id, t("categories.sub") %>
+        <%= f.grouped_collection_select :category_ids, @categories.main_categories,
+          :accessories, :name, :id, :name, {}, {multiple: true} %>
+
         <%= f.submit @product.new_record? ? t("products.btn_create") :
           t("products.btn_edit"), class: "btn btn-primary" %>
       <% end %>

@@ -24,6 +24,13 @@ module CartOrder
     item.price * item.quantity
   end
 
+  def add_line_items_to_order cart, order
+    cart.line_items.each do |item|
+      order.line_items << item
+      item.cart_id = nil
+    end
+  end
+
   def total_cost order
     cost = 0
     order.line_items.each do |item|
@@ -32,20 +39,17 @@ module CartOrder
     cost
   end
 
-  def add_line_items_to_order cart, order
-    cart.line_items.each do |item|
-      order.line_items << item
-      item.cart_id = nil
-    end
-  end
-
   private
 
   def set_cart
-    @cart = Cart.find_by id: session[:cart_id]
-    return if @cart
-    @cart = Cart.create user_id: current_user.id
-    session[:cart_id] = @cart.id
+    if logged_in?
+      @cart = Cart.find_by id: session[:cart_id]
+      return if @cart
+      @cart = Cart.create user_id: current_user.id
+      session[:cart_id] = @cart.id
+    else
+      flash[:danger] = t "carts.not_logged_in"
+    end
   end
 
   def check_cart_status

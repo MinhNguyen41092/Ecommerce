@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :user
   has_many :line_items
+  has_and_belongs_to_many :categories
   before_create :approve_product
   before_destroy :not_referenced_by_line_item
   validates :title, :description, :image_url, presence: true
@@ -25,5 +26,9 @@ class Product < ApplicationRecord
       flash[:danger] = t "products.item_exist"
       throw :abort
     end
+  end
+
+  def self.search search
+    where("title || description || price LIKE ?", "%#{search}%")
   end
 end
