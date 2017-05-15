@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><%= t("home.title") %></title>
+    <title><%= t "home.title" %></title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
@@ -10,6 +10,9 @@
 
   <body>
     <%= render "layouts/navigation" %>
-    <%= yield %>
+    <div class= "container">
+      <%= render "layouts/messages" %>
+      <%= yield %>
+    </div>
   </body>
 </html>

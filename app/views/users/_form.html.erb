@@ -1,4 +1,4 @@
-<%= render 'shared/errors', obj: @user %>
+<%= render "shared/errors", obj: @user %>
 
 <div class="container">
   <div class="row">
@@ -16,7 +16,8 @@
         <%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation %>
 
-        <%= f.submit(@user.new_record? ? "Sign up" : "Edit Profile", class: "btn btn-primary") %>
+        <%= f.submit @user.new_record? ? t("users.btn_signup") : t("users.btn_edit"),
+          class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>

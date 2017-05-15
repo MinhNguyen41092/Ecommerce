@@ -16,6 +16,7 @@ gem "jbuilder", "~> 2.5"
 gem "bootstrap-sass"
 gem "bootstrap-social-rails"
 gem "bcrypt"
+gem "config"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 3.0"
 # Use Capistrano for deployment

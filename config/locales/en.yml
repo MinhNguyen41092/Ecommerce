@@ -1,6 +1,7 @@
 en:
   home:
     title: "Ecommerce29"
+    errors: "Please correct the following errors:"
   nav:
     tognav: "Toggle Navigation"
   pages:
@@ -13,7 +14,26 @@ en:
     logout: "Logout"
     signup: "Get Started"
     register: "Create your account"
+    list: "Users list"
+    admin: "Admin list"
     edit: "Edit Settings"
     show: "Profile of "
     name: "Username"
     email: "Email"
+    create: "Your account has been created successfully"
+    update: "You have updated your profile"
+    delete: "Delete your account"
+    delete?: "Do you really want to delete this user?"
+    deleted: "User has been deleted successfully"
+    no_user: "There is no such user"
+    btn_signup: "Sign up"
+    btn_edit: "Edit Profile"
+    not_admin: "You are not authorized to access this page"
+    pls_log_in: "Please log in"
+    not_correct_user: "You can not edit this user's profile"
+  sessions:
+    new: "Log in to your account"
+    success: "You have logged in"
+    fail: "Incorrect email or password"
+    out: "Your have logged out"
+    remember_me: "Remember me"

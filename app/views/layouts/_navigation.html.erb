@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse"
-      data-target="#navbar-collapse" aria-expanded="false">
+        data-target="#navbar-collapse" aria-expanded="false">
         <span class="sr-only"><%= t("nav.tognav") %></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -18,14 +18,28 @@
         <li><%= link_to t("pages.products"), "" %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li>
-          <%= link_to t("users.login"), "" %>
-        </li>
-        <li>
-          <p class="navbar-btn">
-            <%= link_to t("users.signup"), new_user_path, class: 'btn btn-xs btn-primary signin' %>
-          </p>
-        </li>
+        <% if logged_in? %>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+              role="button" aria-haspopup="true" aria-expanded="false">
+              <strong><%= current_user.name %></strong> <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to t("users.edit"), edit_user_path(current_user) %></li>
+              <li><%= link_to t("users.logout"), logout_path, method: :delete %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to t("users.login"), login_path %>
+          </li>
+          <li>
+            <p class="navbar-btn">
+              <%= link_to t("users.signup"), new_user_path,
+                class: "btn btn-xs btn-primary signin" %>
+            </p>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>

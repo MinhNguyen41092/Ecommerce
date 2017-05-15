@@ -1,0 +1,4 @@
+max_name: 50
+max_email: 255
+minimum: 6
+has_remember: "1"

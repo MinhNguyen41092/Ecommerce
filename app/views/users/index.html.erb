@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-offset-3">
+      <h1 class="text-center"><%= t "users.admin" %></h1>
+      <% User.admin.order_by_name.each do |user| %>
+        <div class="well">
+          <ol>
+            <li><%= t "users.name" %>: <%= link_to user.name, user_path(user) %></li>
+            <li><%= t "users.email" %>: <%= user.email %></li>
+          </ol>
+        </div>
+      <% end %>
+      <h1 class="text-center"><%= t "users.list" %></h1>
+      <% User.not_admin.order_by_name.each do |user| %>
+        <div class="well">
+          <ol>
+            <li><%= t "users.name" %>: <%= link_to user.name, user_path(user) %></li>
+            <li><%= t "users.email" %>: <%= user.email %></li>
+            <%= link_to user, method: :delete, data: {confirm: t("users.delete?")} do %>
+              <button type="button" class="close del_user" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            <% end %>
+          </ol>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
