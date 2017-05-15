@@ -11,7 +11,7 @@ class LineItemsController < ApplicationController
       redirect_to @line_item.cart
     else
       flash[:danger] = t "line_items.create_failed"
-      redirect_to :back
+      redirect_to products_path
     end
   end
 

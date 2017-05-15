@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
   def show; end
 
   def update
-    if @order.update update_status
+    if @order.update order_status_param
       flash[:success] = t "orders.updated"
     else
       flash[:danger] = t "orders.not_updated"
@@ -63,7 +63,7 @@ class OrdersController < ApplicationController
     params.require(:order).permit :full_name, :email, :address, :pay_type
   end
 
-  def update_status
+  def order_status_param
     params.require(:order).permit :status
   end
 end
