@@ -1,0 +1,31 @@
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th><%= t "orders.name" %></th>
+      <th><%= t "orders.show" %></th>
+      <th><%= t "orders.cost" %></th>
+      <th><%= t "orders.status" %></th>
+      <th><%= t "orders.actions" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% orders.each do |order| %>
+      <tr>
+        <td><%= order.full_name %></td>
+        <td><%= link_to t("orders.show"), order_path(order) %></td>
+        <td><%= number_to_currency total_cost(order),
+          unit: Settings.unit, format: "%n %u", precision: 0 %></td>
+        <td class="status">
+          <%= form_for order, method: :patch, remote: true do |f| %>
+            <%= f.select :status, Order.statuses.keys, prompt: order.status %>
+            <%= f.submit t("orders.up_status"), class: "btn btn-xs btn-primary" %>
+          <% end %>
+        </td>
+        <td class="del-order">
+          <%= link_to t("orders.delete"), order, remote: true, method: :delete,
+            data: {confirm: t("orders.delete?")}, class: "btn btn-xs btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

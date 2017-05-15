@@ -1,0 +1,24 @@
+<%= render "shared/errors", obj: @order %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <%= form_for @order do |f| %>
+        <%= f.label :full_name %>
+        <%= f.text_field :full_name %>
+
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+
+        <%= f.label :address %>
+        <%= f.text_area :address %>
+
+        <%= f.label :pay_type %>
+        <%= f.select :pay_type, Order.pay_types.keys, prompt: t("orders.payment") %>
+
+        <%= f.submit @order.new_record? ? t("orders.create") : t("orders.update"),
+          class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

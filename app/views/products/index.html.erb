@@ -1,25 +1,86 @@
 <h1 class="text-center"><%= t "products.index" %></h1>
 
-<div class="pag"><%= paginate @products %></div>
-<% if @cart && logged_in? %>
-  <%= link_to t("carts.show"), cart_path(@cart), class:"btn btn-xs btn-primary cart" %>
-<% end %>
-<div class="container">
-  <% @products.each do |p| %>
-    <div class="row">
-      <div class="col-sm-4 col-md-4">
-        <div class="thumbnail">
-          <%= image_tag p.image_url, size: Settings.index_img_size %>
-          <div class="caption">
-            <h4><%= link_to p.title, product_path(p) %></h4>
-            <p><%= p.description %></p>
-            <p><%= number_to_currency p.price,
-              unit: Settings.unit, format: "%n %u", precision: 0 %></p>
-          </div>
-          <p><%= link_to t("products.add_cart"), line_items_path(product_id: p.id),
-            method: :post, class: "btn btn-primary add-cart" %></p>
-        </div>
+<div class="text-center">
+  <div class="dropdown categories">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+      Categories<span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <% Category.all.main_categories.each do |cat| %>
+        <% if !cat.accessories.empty? %>
+          <li class="dropdown-submenu">
+            <a class="test" tabindex="-1">
+              <%= link_to category_path(cat) do %>
+                <%= cat.name %>
+                <span class="caret"></span>
+              <% end %>
+            </a>
+            <ul class="dropdown-menu">
+              <% cat.accessories.each do |acc| %>
+                <li><a tabindex="-1"><%= link_to acc.name, category_path(acc) %></a></li>
+              <% end %>
+            </ul>
+          </li>
+        <% else %>
+          <li><a tabindex="-1"><%= link_to cat.name, category_path(cat) %></a></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="search">
+    <%= form_tag(products_path, method: "get", class: "navbar-form", id: "search") do %>
+      <div class="input-group">
+        <%= text_field_tag "search", params[:search],
+          class: "form-control", placeholder: t("search")  %>
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="submit">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </span>
       </div>
     <% end %>
   </div>
 </div>
+
+<div class="dropdown sort">
+  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+    <% if params[:filter].nil? %>
+      <%= t "filter.sort_by" %>
+    <% else %>
+      <%= params[:filter] %>
+    <% end %>
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li>
+      <%= link_to t("filter.all"), products_path(filter: t("filter.all")) %>
+    </li>
+    <li>
+      <%= link_to t("filter.most_viewed"), products_path(filter: t("filter.most_viewed")) %>
+    </li>
+    <li>
+      <%= link_to t("filter.rating"), products_path(filter: t("filter.rating")) %>
+    </li>
+    <li>
+      <%= link_to t("filter.oldest"), products_path(filter: t("filter.oldest")) %>
+    </li>
+    <li>
+      <%= link_to t("filter.newest"), products_path(filter: t("filter.newest")) %>
+    </li>
+    <li>
+      <%= link_to t("filter.alph"), products_path(filter: t("filter.alph")) %>
+    </li>
+    <li>
+      <%= link_to t("filter.price_high_to_low"),
+        products_path(filter: t("filter.price_high_to_low")) %>
+    </li>
+    <li>
+      <%= link_to t("filter.price_low_to_high"),
+        products_path(filter: t("filter.price_low_to_high")) %>
+    </li>
+  </ul>
+</div>
+
+<div id="products"><%= render partial: "products",
+  locals: {products: @products} %></div>

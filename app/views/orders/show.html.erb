@@ -1,0 +1,15 @@
+<ul>
+  <li><%= t "orders.name" %>: <%= @order.full_name %></li>
+  <li><%= t "orders.email" %>: <%= @order.email %></li>
+  <li><%= t "orders.pay_type" %>:  <%= @order.pay_type %></li>
+  <li><%= t "orders.status" %>: <%= @order.status %></li>
+  <li><%= t "orders.item" %>:
+    <ul>
+      <% @order.line_items.each do |item| %>
+        <li><%= item.product.title %> X <%= item.quantity %></li>
+      <% end %>
+    </ul>
+  </li>
+  <li><%= t "orders.cost" %>: <%= number_to_currency total_cost(@order),
+          unit: Settings.unit, format: "%n %u", precision: 0 %></li>
+</ul>

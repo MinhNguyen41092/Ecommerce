@@ -1,0 +1,21 @@
+<h1 class="text-center"><%= t "orders.mine" %></h1>
+
+<table class="table table-hover table-bordered">
+  <thead>
+    <tr>
+      <th><%= t "orders.created_at" %></th>
+      <th><%= t "orders.cost" %></th>
+      <th><%= t "orders.status" %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% orders.newest.each do |order| %>
+      <tr>
+        <td><%= order.created_at %></td>
+        <td><%= number_to_currency total_cost(order),
+          unit: Settings.unit, format: "%n %u", precision: 0 %></td>
+        <td><%= order.status %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,3 +1,4 @@
+
 *.rbc
 capybara-*.html
 .rspec
@@ -52,3 +53,6 @@ app/assets/images
 
 db/schema.rb
 Gemfile.lock
+
+# Ignore application configuration
+/config/application.yml

@@ -2,18 +2,24 @@
   <div class="row">
     <div class="col-md-8 col-offset-3">
       <h1 class="text-center"><%= t "users.admin" %></h1>
-      <% User.admin.order_by_name.each do |user| %>
+      <%= paginate @admin_users %>
+      <% @admin_users.each do |user| %>
         <div class="well">
-          <ol>
+          <ul>
             <li><%= t "users.name" %>: <%= link_to user.name, user_path(user) %></li>
             <li><%= t "users.email" %>: <%= user.email %></li>
-          </ol>
+            <% if !(user.id == 1) %>
+              <%= link_to t("ad.remove"), set_admin_user_path(user, is_admin: false),
+                method: :put, data: {confirm: t("ad.sure?")} %>
+            <% end %>
+          </ul>
         </div>
       <% end %>
       <h1 class="text-center"><%= t "users.list" %></h1>
-      <% User.not_admin.order_by_name.each do |user| %>
+      <%= paginate @users %>
+      <% @users.each do |user| %>
         <div class="well">
-          <ol>
+          <ul>
             <li><%= t "users.name" %>: <%= link_to user.name, user_path(user) %></li>
             <li><%= t "users.email" %>: <%= user.email %></li>
             <%= link_to user, method: :delete, data: {confirm: t("users.delete?")} do %>
@@ -21,7 +27,11 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             <% end %>
-          </ol>
+            <li>
+              <%= link_to t("ad.set"), set_admin_user_path(user, is_admin: true),
+                method: :put, data: {confirm: t("ad.sure?")} %>
+            </li>
+          </ul>
         </div>
       <% end %>
     </div>

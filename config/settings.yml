@@ -4,7 +4,6 @@ minimum: 6
 has_remember: "1"
 min_price: 1000
 max_des: 140
-items_per_pages: 9
+items_per_pages: 6
 show_img_size: "260x260"
-index_img_size: "80x150"
 unit: "VND"

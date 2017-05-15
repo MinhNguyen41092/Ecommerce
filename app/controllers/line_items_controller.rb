@@ -1,17 +1,17 @@
 class LineItemsController < ApplicationController
-  include CurrentCart
+  include CartOrder
   before_action :set_cart, :load_product, only: :create
   before_action :load_line_item, only: [:update, :destroy]
 
   def create
     @line_item = @cart.add_product @product
-    @line_item.price = product.price
+    @line_item.price = @product.price
     if @line_item.save
       flash[:success] = t "line_items.create_success"
       redirect_to @line_item.cart
     else
       flash[:danger] = t "line_items.create_failed"
-      redirect_to :back
+      redirect_to products_path
     end
   end
 
@@ -25,11 +25,11 @@ class LineItemsController < ApplicationController
 
   def destroy
     if @line_item.destroy
-      flash[:success] = t "line_items.update_deleted"
-      redirect_to cart_path @cart
+      flash[:success] = t "line_items.deleted"
     else
-      redirect_to :back
+      flash[:danger] = t "line_items.delete_failed"
     end
+    redirect_to :back
   end
 
   private

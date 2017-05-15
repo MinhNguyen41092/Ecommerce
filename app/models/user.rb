@@ -1,5 +1,7 @@
 class User < ApplicationRecord
+  ratyrate_rater
   has_many :products
+  has_many :orders
   after_initialize :init
   attr_accessor :remember_token
   before_save{self.email = email.downcase}

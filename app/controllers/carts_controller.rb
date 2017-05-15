@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  include CurrentCart
+  include CartOrder
   before_action :set_cart, only: :destroy
   before_action :load_cart, only: :show
 

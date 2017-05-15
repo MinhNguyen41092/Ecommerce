@@ -1,10 +1,18 @@
 class ProductsController < ApplicationController
+  include ProductLib
   before_action :load_product, except: [:index, :new, :create]
   before_action :verify_admin, only: [:edit, :update, :destroy]
+  before_action :load_categories, except: :destroy
+  before_filter :log_impression, only: :show
 
   def index
-    @products = Product.valid_products.order_newest.page(params[:page]).
-      per Settings.items_per_pages
+    if params[:filter]
+      @products = filter_products(params[:filter]).page(params[:page]).
+        per Settings.items_per_pages
+    else
+      @products = products_search(params[:search]).order_newest.page(params[:page]).
+        per Settings.items_per_pages
+    end
     @cart = Cart.find_by id: session[:cart_id]
   end
 
@@ -17,7 +25,7 @@ class ProductsController < ApplicationController
     @product.user = current_user
     if @product.save
       flash[:success] = t "products.create"
-      redirect_to root_path
+      redirect_to products_path
     else
       render :new
     end
@@ -54,7 +62,17 @@ class ProductsController < ApplicationController
     redirect_to products_path
   end
 
+  def load_categories
+    @categories = Category.all
+  end
+
   def product_params
-    params.require(:product).permit :title, :description, :image_url, :price
+    params.require(:product).permit :title, :description, :image_url,
+      :price, :remove_image_url, category_ids: []
+  end
+
+  def log_impression
+    @product.impressions.create ip_address: request.remote_ip, user_id: current_user.id
+    @product.update_attribute :views, @product.unique_impression_count
   end
 end

@@ -18,6 +18,10 @@ gem "bootstrap-social-rails"
 gem "bcrypt"
 gem "config"
 gem "kaminari", git: "git://github.com/amatsuda/kaminari.git", branch: "master"
+gem "figaro"
+gem "ratyrate"
+gem "carrierwave"
+gem "mini_magick"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 3.0"
 # Use Capistrano for deployment
@@ -35,6 +39,11 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
+end
+
+group :production do
+  gem "pg"
+  gem "rails_12factor"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

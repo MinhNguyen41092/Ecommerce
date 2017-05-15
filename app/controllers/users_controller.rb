@@ -4,7 +4,12 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :verify_admin, only: :index
 
-  def index; end
+  def index
+    @admin_users = User.admin.order_by_name.page(params[:page]).
+      per Settings.items_per_pages
+    @users = User.not_admin.order_by_name.page(params[:page]).
+      per Settings.items_per_pages
+  end
 
   def new
     @user = User.new
@@ -44,10 +49,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def set_admin
+    @user = User.find_by id: params[:id]
+    if @user.update_attribute :is_admin, params[:is_admin]
+      flash[:success] = t "ad.success"
+    end
+    redirect_to :back
+  end
+
   private
 
   def user_params
-    params.require(:user).permit :name, :email, :password, :password_confirmation
+    params.require(:user).permit :name, :email, :password, :password_confirmation, :is_admin
   end
 
   def load_user
@@ -67,8 +80,12 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find_by id: params[:id]
     if @user != current_user
-      flash[:danger] = t "users.not_correct_user"
-      redirect_to root_path
+      if current_user.is_admin
+        return @user
+      else
+        flash[:danger] = t "users.not_correct_user"
+        redirect_to root_path
+      end
     end
   end
 
