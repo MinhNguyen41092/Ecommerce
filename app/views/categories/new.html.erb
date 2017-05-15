@@ -1,0 +1,17 @@
+<h1 class="text-center"><%= t "categories.new" %></h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <%= form_for @category do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+
+        <%= f.label :parent_id, t("categories.parent") %>
+        <%= f.collection_select :parent_id, Category.all, :id, :name, prompt: t("categories.choose") %>
+
+        <%= f.submit t("categories.new"), class:"btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

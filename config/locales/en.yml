@@ -63,6 +63,7 @@ en:
     not_item: "Can not find item"
     not_product: "Can not find product"
   carts:
+    not_logged_in: "Please log in"
     show: "Your Cart"
     delete: "Delete cart"
     deleted: "Cart deleted"
@@ -108,3 +109,13 @@ en:
     received: "Ecommerce29 order confirmation"
     shipped: "Ecommerce29 order shipped"
     canceled: "Ecommerce29 canceled order"
+  categories:
+    menu: "Categories"
+    new: "Create category"
+    parent: "Parent Category"
+    choose: "Choose category"
+    created: "Category has been created"
+    category: "Category"
+    sub: "Sub Category"
+    not_found: "Can not find this category"
+  search: "Search"
