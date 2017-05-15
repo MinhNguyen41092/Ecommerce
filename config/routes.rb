@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  post '/rate' => 'rater#create', :as => 'rate'
+  post "/rate" => "rater#create", as: "rate"
   root to: "pages#home"
+  get "/statistics" => "pages#statistics"
   get "/about" => "pages#about"
   get "/news" => "pages#news"
   get "/login" => "sessions#new"

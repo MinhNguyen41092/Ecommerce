@@ -6,7 +6,7 @@ module CartOrder
     elsif order.status == t("orders.shipped")
       OrderMailer.shipped(order).deliver_later
     else
-      OrderMailer.invalid(order).deliver_later
+      OrderMailer.canceled(order).deliver_later
     end
   end
 

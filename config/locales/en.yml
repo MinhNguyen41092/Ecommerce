@@ -83,8 +83,8 @@ en:
     empty: "Cart is empty"
   orders:
     submitted: "Your order has been submitted"
-    received: "Received"
-    shipped: "Shipped"
+    received: "received"
+    shipped: "shipped"
     invalid: "Invalid"
     mine: "Your orders"
     index: "All orders"
@@ -135,3 +135,7 @@ en:
   search: "Search"
   rating: "rating"
   avg: "Average rating"
+  stats:
+    head: "Statistics"
+    pie_title: "Order numbers of each product"
+    bar_title: "Purchased number of each product"

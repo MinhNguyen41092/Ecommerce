@@ -1,0 +1,50 @@
+<h1 class="text-center"><%= t "stats.head" %></h1>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart1);
+  google.charts.setOnLoadCallback(drawChart2);
+  function drawChart1() {
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Product');
+    data.addColumn('number', 'Orders');
+    data.addRows(<%=  raw @product_orders %>);
+
+    var options = {
+      title: "<%= t "stats.pie_title" %>",
+      width: 350,
+      height: 300};
+
+    var chart = new google.visualization.PieChart(document.getElementById('piechart_div'));
+    chart.draw(data, options);
+  }
+
+  function drawChart2() {
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Product');
+    data.addColumn('number', 'Purchased number');
+    data.addRows(<%= raw @purchased_products %>);
+
+    var options = {
+      title: "<%= t "stats.bar_title" %>",
+      width: 350,
+      height: 300,
+      bar: {groupWidth: "95%"},
+      legend: { position: "none" },
+    };
+    var chart = new google.visualization.BarChart(document.getElementById("barchart_div"));
+    chart.draw(data, options);
+  }
+</script>
+
+<div class="text-center">
+  <table class="columns">
+    <tr>
+      <td><div id="piechart_div" style="border: 1px solid #ccc"></div></td>
+      <td><div id="barchart_div" style="border: 1px solid #ccc"></div></td>
+    </tr>
+  </table>
+</div>

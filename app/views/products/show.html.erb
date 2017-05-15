@@ -13,12 +13,15 @@
     <li><%= rating_for @product, t("rating") %></li>
     <li><%= link_to 'Share on Facebook', "https://www.facebook.com/dialog/feed?
       app_id=1481916678549936&display=popup&amp;caption=An%20example%20caption
-      &link=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2F
-      &redirect_uri=#{product_url(@product)}", target: :blank %></li>
+      &link=#{product_url(@product)}&redirect_uri=#{product_url(@product)}",
+      target: :blank %></li>
   </ul>
   <% if current_user.is_admin %>
     <%= link_to t("products.btn_edit"), edit_product_path(@product), class: "btn btn-primary edit-p" %>
     <%= link_to t("products.delete"), @product, method: :delete,
       data: {confirm: t("products.delete?")}, class: "btn btn-danger delete-p" %>
   <% end %>
+  <div class="fb-comments" data-href="<%= product_url(@product) %>"
+    data-width="600" data-numposts="5"></div>
+  </div>
 </div>

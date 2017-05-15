@@ -152,7 +152,7 @@ button {
 .sort {
   float: right;
   display: inline-block;
-  margin-top: 20px !important;
+  margin-top: -10px;
 }
 
 .dropdown-submenu {
@@ -181,6 +181,6 @@ button {
 
 .rating-shop {
   position: absolute;
+  right: 150px;
   bottom: 30px;
-  right: 10px;
 }
