@@ -15,11 +15,10 @@ gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.5"
 gem "bootstrap-sass"
 gem "bootstrap-social-rails"
+gem "rails-controller-testing"
+gem "bcrypt"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 3.0"
-
-gem "bcrypt", "~> 3.1.7"
-
 # Use Capistrano for deployment
 # gem "capistrano-rails", group: :development
 
