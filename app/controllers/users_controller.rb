@@ -20,11 +20,13 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       flash[:success] = "Your have updated your profile"
-      redirect_to root_path
+      redirect_to user_path(@user)
     else
       render "edit"
     end
   end
+
+  def show; end
 
   private
 

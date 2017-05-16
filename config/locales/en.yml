@@ -14,3 +14,6 @@ en:
     signup: "Get Started"
     register: "Create your account"
     edit: "Edit Settings"
+    show: "Profile of "
+    name: "Username"
+    email: "Email"
