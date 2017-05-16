@@ -10,4 +10,7 @@ en:
     products: "Products"
   users:
     login: "Log in"
+    logout: "Logout"
     signup: "Get Started"
+    register: "Create your account"
+    edit: "Edit Settings"
