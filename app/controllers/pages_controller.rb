@@ -8,7 +8,8 @@ class PagesController < ApplicationController
 
 	end
 
-	def news
+  def news
 
-	end
+  end
+
 end
