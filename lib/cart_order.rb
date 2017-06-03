@@ -44,7 +44,7 @@ module CartOrder
   def set_cart
     if logged_in?
       @cart = Cart.find_by id: session[:cart_id]
-      return if @cart
+      return if @cart && @cart.user_id == current_user.id
       @cart = Cart.create user_id: current_user.id
       session[:cart_id] = @cart.id
     else
