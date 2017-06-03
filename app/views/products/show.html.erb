@@ -1,7 +1,7 @@
 <%= link_to t("back"), url_for(:back), class: "btn btn-xs btn-default" %>
 
 <div class="container">
-  <div class="image"><%= image_tag @product.image_url.show.url %></div>
+  <div class="image"><%= image_tag @product.image_url.show %></div>
   <ul class="info">
     <li class="title"><%= @product.title %></li>
     <li><%= @product.description %></li>

@@ -125,6 +125,7 @@ en:
   filter:
     sort_by: "Sort by"
     all: "All"
+    hot: "Hot"
     most_viewed: "Most viewed"
     rating: "Rating"
     oldest: "Oldest"
@@ -140,3 +141,7 @@ en:
     cant_send_message: "Couldn't send message"
     created: "Chatroom created"
     new: "Chat with us"
+  stats:
+    head: "Statistics"
+    pie_title: "Order numbers of each product per total orders"
+    bar_title: "Purchased number of each product"

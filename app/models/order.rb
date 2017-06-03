@@ -4,6 +4,7 @@ class Order < ApplicationRecord
   validates :full_name, :email, :address, :pay_type, :user_id, presence: true
 
   scope :newest, -> {order(created_at: :desc)}
+  scope :shipped, -> {where(status: "shipped")}
 
   enum pay_type: [:cash, :paypal, :credit_card]
 

@@ -7,6 +7,7 @@
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbolinks-track": "reload" %>
     <%= javascript_include_tag "ratyrate.js", "data-turbolinks-track" => false %>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <%= action_cable_meta_tag %>
   </head>
 
@@ -18,7 +19,7 @@
       js = d.createElement(s); js.id = id;
       js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=1481916678549936";
       fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
+      }(document, 'script', 'facebook-jssdk'));
     </script>
     <%= render "layouts/navigation" %>
     <div class= "container">
