@@ -12,9 +12,9 @@ class OrderMailer < ApplicationMailer
     mail to: order.email, subject: t("mail.shipped")
   end
 
-  def invalid order
+  def canceled order
     @order = order
 
-    mail to: order.email, subject: t("mail.invalid")
+    mail to: order.email, subject: t("mail.canceled")
   end
 end

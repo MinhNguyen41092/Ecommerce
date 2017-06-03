@@ -33,6 +33,7 @@
           <% else %>
             <li><%= link_to t("products.suggest"), new_product_path %></li>
           <% end %>
+          <li><%= link_to t("chat.new"), new_chatroom_path %></li>
           <% if @cart %>
             <p class="navbar-btn cart"><%= link_to t("carts.show"), cart_path(@cart),
               class:"btn btn-xs btn-primary" %></p>

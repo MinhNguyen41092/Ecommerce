@@ -60,6 +60,7 @@ en:
     add_cart: "Add to cart"
     update: "You have updated this product"
     viewed: "Viewed"
+    item_exist: "This item is in a cart"
   line_items:
     create_success: "Added item to cart"
     create_failed: "Can not add item to cart"
@@ -70,6 +71,7 @@ en:
     not_item: "Can not find item"
     not_product: "Can not find product"
   carts:
+    not_logged_in: "Please log in"
     show: "Your Cart"
     delete: "Delete cart"
     deleted: "Cart deleted"
@@ -83,9 +85,9 @@ en:
     empty: "Cart is empty"
   orders:
     submitted: "Your order has been submitted"
-    received: "Received"
-    shipped: "Shipped"
-    invalid: "Invalid"
+    received: "received"
+    shipped: "shipped"
+    canceled: "canceled"
     mine: "Your orders"
     index: "All orders"
     show: "Order details"
@@ -114,9 +116,8 @@ en:
   mail:
     received: "Ecommerce29 order confirmation"
     shipped: "Ecommerce29 order shipped"
-    invalid: "Ecommerce29 invalid order"
+    canceled: "Ecommerce29 canceled order"
   categories:
-    create: "Create category"
     created: "Category has been created"
     category: "Category"
     sub: "Sub Category"
@@ -135,3 +136,7 @@ en:
   search: "Search"
   rating: "rating"
   avg: "Average rating"
+  chat:
+    cant_send_message: "Couldn't send message"
+    created: "Chatroom created"
+    new: "Chat with us"

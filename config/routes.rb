@@ -16,4 +16,9 @@ Rails.application.routes.draw do
   resources :line_items
   resources :orders
   resources :categories
+
+  mount ActionCable.server => "/cable"
+
+  resources :chatrooms, param: :name
+  resources :messages
 end

@@ -1,12 +1,13 @@
 class OrdersController < ApplicationController
   include CartOrder
+  before_action :verify_admin, only: [:index, :update, :destroy]
   before_action :set_cart, only: [:new, :create]
   before_action :check_cart_status, only: :new
-  before_action :verify_admin, only: [:index, :update, :destroy]
   before_action :load_order, only: [:show, :update, :destroy]
 
   def index
-    @orders = Order.all.newest
+    @orders = Order.all.newest.page(params[:page]).
+      per Settings.items_per_pages
   end
 
   def new

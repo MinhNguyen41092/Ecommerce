@@ -17,7 +17,8 @@
       target: :blank %></li>
   </ul>
   <% if current_user.is_admin %>
-    <%= link_to t("products.btn_edit"), edit_product_path(@product), class: "btn btn-primary edit-p" %>
+    <%= link_to t("products.btn_edit"), edit_product_path(@product),
+      class: "btn btn-primary edit-p" %>
     <%= link_to t("products.delete"), @product, method: :delete,
       data: {confirm: t("products.delete?")}, class: "btn btn-danger delete-p" %>
   <% end %>

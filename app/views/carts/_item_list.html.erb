@@ -16,7 +16,8 @@
           <%= t "carts.total_price" %>: <%= number_to_currency total_price(item),
             unit: Settings.unit, format: "%n %u", precision: 0 %>
         </div>
-        <%= link_to item, remote: true, method: :delete, data: {confirm: t("line_items.delete?")} do %>
+        <%= link_to item, remote: true, method: :delete,
+          data: {confirm: t("line_items.delete?")} do %>
           <button type="button" class="close del_line_item" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -31,10 +32,11 @@
         data: {confirm: t("carts.delete?")}, class:"btn btn-xs btn-danger del-cart" %>
     </div>
     <div class="col-xs-4 order">
-      <%= link_to t("carts.order"), "", class:"btn btn-xs btn-success" %>
+      <%= link_to t("carts.order"), new_order_path, class:"btn btn-xs btn-success" %>
     </div>
     <div class="col-xs-4">
-      <%= link_to t("carts.shop"), products_path, class:"btn btn-xs btn-primary shop" %>
+      <%= link_to t("carts.shop"), products_path,
+        class:"btn btn-xs btn-primary shop" %>
     </div>
   </div>
 </div>

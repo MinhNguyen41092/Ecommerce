@@ -16,7 +16,7 @@ module CartOrder
     elsif order.status == t("orders.shipped")
       OrderMailer.shipped(order).deliver_later
     else
-      OrderMailer.invalid(order).deliver_later
+      OrderMailer.canceled(order).deliver_later
     end
   end
 
@@ -48,7 +48,7 @@ module CartOrder
       @cart = Cart.create user_id: current_user.id
       session[:cart_id] = @cart.id
     else
-      flash[:danger] = "Please log in"
+      flash[:danger] = t "carts.not_logged_in"
       redirect_to products_path
     end
   end

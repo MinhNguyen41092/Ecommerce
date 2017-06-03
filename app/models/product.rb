@@ -28,7 +28,7 @@ class Product < ApplicationRecord
 
   def not_referenced_by_line_item
     unless line_items.empty?
-      flash[:danger] = "This item is in a cart"
+      flash[:danger] = t "products.item_exist"
       throw :abort
     end
   end
