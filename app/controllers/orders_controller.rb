@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   include CartOrder
+  include ProductLib
   before_action :verify_admin, only: [:index, :update, :destroy]
   before_action :set_cart, only: [:new, :create]
   before_action :check_cart_status, only: :new
@@ -32,8 +33,11 @@ class OrdersController < ApplicationController
   def show; end
 
   def update
-    if @order.update update_order_status
+    if @order.update order_status_param
       flash[:success] = t "orders.updated"
+      if @order.status == "shipped"
+        sold_units_of_product @order
+      end
     else
       flash[:danger] = t "orders.not_updated"
     end
@@ -63,7 +67,7 @@ class OrdersController < ApplicationController
     params.require(:order).permit :full_name, :email, :address, :pay_type
   end
 
-  def update_order_status
+  def order_status_param
     params.require(:order).permit :status
   end
 end

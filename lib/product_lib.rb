@@ -1,5 +1,13 @@
 module ProductLib
 
+  def sold_units_of_product order
+    order.line_items.each do |item|
+      sold_units = item.product.sold_units
+      sold_units += item.quantity
+      item.product.update_attribute :sold_units, sold_units
+    end
+  end
+
   def products_search search
     if search
       Product.where("title || description || price LIKE ?", "%#{search}%")
@@ -18,6 +26,8 @@ module ProductLib
   def filter_products filter
     if filter == t("filter.all")
       Product.valid_products
+    elsif filter == t("filter.hot")
+      Product.valid_products.hot
     elsif filter == t("filter.most_viewed")
       Product.valid_products.most_viewed
     elsif filter == t("filter.rating")

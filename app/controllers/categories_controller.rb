@@ -20,6 +20,27 @@ class CategoriesController < ApplicationController
       per Settings.items_per_pages
   end
 
+  def edit; end
+
+  def update
+    if @category.update category_params
+      flash[:success] = t "categories.updated"
+      redirect_to products_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    if @category.destroy
+      flash[:success] = t "categories.deleted"
+      redirect_to products_path
+    else
+      flash[:danger] = t "categories.not_deleted"
+      redirect_to :back
+    end
+  end
+
   private
 
   def load_category
