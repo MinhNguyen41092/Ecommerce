@@ -2,9 +2,13 @@
 
 <%= link_to t("back"), url_for(:back), class: "btn btn-xs btn-default" %>
 
-<%= link_to t("categories.edit"), edit_category_path(@category) %>
+<% if logged_in? %>
+  <% if current_user.is_admin %>
+    <%= link_to t("categories.edit"), edit_category_path(@category) %>
 
-<%= link_to t("categories.delete"), @category, method: :delete,
-  data: {confirm: t("categories.delete?")} %>
+    <%= link_to t("categories.delete"), @category, method: :delete,
+      data: {confirm: t("categories.delete?")} %>
+  <% end %>
+<% end %>
 
 <%= render partial: "products/products", locals: {products: @products} %>
