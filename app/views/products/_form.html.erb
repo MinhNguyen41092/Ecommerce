@@ -32,6 +32,15 @@
         <%= f.submit @product.new_record? ? t("products.btn_create") :
           t("products.btn_edit"), class: "btn btn-primary" %>
       <% end %>
+
+      <% if current_user.is_admin %>
+        <h2>Import Products</h2>
+
+        <%= form_tag import_products_path, multipart: true do %>
+          <%= file_field_tag :file %>
+          <%= submit_tag "Import" %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
