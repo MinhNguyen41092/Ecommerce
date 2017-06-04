@@ -1,0 +1,7 @@
+<h1 class="text-center">Chatrooms list</h1>
+
+<ul>
+  <% @chatrooms.each do |room| %>
+    <li><%= link_to room.topic, chatroom_path(room) %></li>
+  <% end %>
+</ul>

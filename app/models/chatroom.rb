@@ -4,6 +4,7 @@ class Chatroom < ApplicationRecord
   validates :topic, presence: true, uniqueness: true, case_sensitive: false
   before_validation :sanitize, :namenify
 
+  scope :newest, -> {order(created_at: :desc)}
 
   def to_param
     self.name

@@ -1,6 +1,8 @@
 <div class="row col-md-8 col-md-offset-2">
   <h1><%= @chatroom.topic %></h1>
 
+<%= link_to t("back"), url_for(:back), class: "btn btn-xs btn-default" %>
+
 <div class="panel panel-default">
   <% if @chatroom.messages.any? %>
     <div class="panel-body" id="messages">

@@ -29,14 +29,16 @@
                 <li><%= link_to t("products.btn_create"), new_product_path %></li>
                 <li><%= link_to t("categories.create"), new_category_path %></li>
                 <li><%= link_to "Imported products", imports_products_path %></li>
+                <li><%= link_to "Unapproved products", unapproved_products_path %></li>
                 <li><%= link_to "Statistics", statistics_path %></li>
+                <li><%= link_to "Chatrooms", chatrooms_path %></li>
               </ul>
           </li>
           <% else %>
             <li><%= link_to t("products.suggest"), new_product_path %></li>
           <% end %>
           <li><%= link_to t("chat.new"), new_chatroom_path %></li>
-          <% if @cart %>
+          <% if @cart && (@cart.user == current_user) %>
             <p class="navbar-btn cart"><%= link_to t("carts.show"), cart_path(@cart),
               class:"btn btn-xs btn-primary" %></p>
           <% end %>

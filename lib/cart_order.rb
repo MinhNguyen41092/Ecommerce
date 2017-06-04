@@ -20,8 +20,16 @@ module CartOrder
     end
   end
 
-  def total_price item
+  def item_price item
     item.price * item.quantity
+  end
+
+  def total_price cart
+    total = 0
+    cart.line_items.each do |item|
+      total += item.price * item.quantity
+    end
+    total
   end
 
   def add_line_items_to_order cart, order

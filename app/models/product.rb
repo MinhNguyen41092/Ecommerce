@@ -14,6 +14,7 @@ class Product < ApplicationRecord
   validates :price, numericality: {greater_than_or_equal_to: Settings.min_price}
 
   scope :valid_products, -> {where(is_approved: true)}
+  scope :unapproved, -> {where(is_approved: false)}
   scope :not_imported, -> {where.not(description: nil)}
   scope :hot, -> {order(sold_units: :desc)}
   scope :most_viewed, -> {order(views: :desc)}

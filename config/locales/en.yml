@@ -79,6 +79,7 @@ en:
     delete?: "Delete cart?"
     not_cart: "This is not your cart"
     quantity: "Quantity"
+    item_price: "Price"
     total_price: "Total price"
     order: "Proceed to buy"
     shop: "Back to shop"

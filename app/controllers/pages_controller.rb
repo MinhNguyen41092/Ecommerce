@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   include Statistics
+  before_action :verify_admin, only: :statistics
 
   def home; end
   def about; end

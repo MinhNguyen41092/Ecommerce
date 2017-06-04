@@ -1,5 +1,11 @@
 class ChatroomsController < ApplicationController
   before_action :authorize_chatroom, only: :show
+  before_action :verify_admin, only: :index
+
+  def index
+    @chatrooms = Chatroom.newest.page(params[:page]).
+      per Settings.items_per_pages
+  end
 
   def new
     @chatroom = Chatroom.new

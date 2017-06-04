@@ -13,9 +13,14 @@ Rails.application.routes.draw do
     end
   end
   resources :products do
+    member do
+      put "approve"
+    end
+
     collection do
       post :import
       get :imports
+      get :unapproved
     end
   end
 

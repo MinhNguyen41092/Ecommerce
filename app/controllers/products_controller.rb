@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   include ProductLib
-  before_action :load_product, except: [:index, :new, :create, :import, :imports]
-  before_action :verify_admin, only: [:edit, :update, :destroy]
+  before_action :load_product, only: [:show, :edit, :update, :destroy]
+  before_action :verify_admin, except: [:index, :new, :create, :show]
   before_action :load_categories, except: [:destroy, :import]
   before_filter :log_impression, only: :show
 
@@ -54,7 +54,7 @@ class ProductsController < ApplicationController
   end
 
   def imports
-    @products = Product.imported.page(params[:page]).
+    @products = Product.imported.order_newest.page(params[:page]).
       per Settings.items_per_pages
   end
 
@@ -62,6 +62,19 @@ class ProductsController < ApplicationController
     Product.import params[:file]
     flash[:success] = t "products.imported"
     redirect_to imports_products_path
+  end
+
+  def approve
+    @product = Product.find_by id: params[:id]
+    if @product.update_attribute :is_approved, params[:is_approved]
+      flash[:success] = "Product has been approved"
+    end
+    redirect_to :back
+  end
+
+  def unapproved
+    @products = Product.unapproved.order_newest.page(params[:page]).
+      per Settings.items_per_pages
   end
 
   private

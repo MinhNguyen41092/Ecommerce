@@ -1,0 +1,18 @@
+<table class="table table-hover table-bordered" style="width:600px">
+  <tr>
+    <th>Title</th>
+    <th>User</th>
+    <th>Approve</th>
+    <th>Delete</th>
+  </tr>
+  <% @products.each do |p| %>
+    <tr>
+      <td><%= link_to p.title, product_path(p) %></td>
+      <td><%= p.user.name %></td>
+      <td><%= link_to "Approve", approve_product_path(p, is_approved: true),
+        method: :put, data: {confirm: t("ad.sure?")} %></td>
+      <td><%= link_to t("products.delete"), p, method: :delete,
+        data: {confirm: t("products.delete?")}, class: "btn btn-xs btn-danger" %></td>
+    </tr>
+  <% end %>
+</table>

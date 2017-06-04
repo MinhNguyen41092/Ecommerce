@@ -13,7 +13,7 @@
           <% end %>
         </li>
         <div class="price">
-          <%= t "carts.total_price" %>: <%= number_to_currency total_price(item),
+          <%= t "carts.item_price" %>: <%= number_to_currency item_price(item),
             unit: Settings.unit, format: "%n %u", precision: 0 %>
         </div>
         <%= link_to item, remote: true, method: :delete,
@@ -25,6 +25,9 @@
       </div>
     <% end %>
   </ul>
+
+  <%= t "carts.total_price" %>: <%= number_to_currency total_price(@cart),
+    unit: Settings.unit, format: "%n %u", precision: 0 %>
 
   <div class="row">
     <div class="col-xs-4">
