@@ -61,6 +61,7 @@ en:
     update: "You have updated this product"
     viewed: "Viewed"
     item_exist: "This item is in a cart"
+    imported: "Products imported"
   line_items:
     create_success: "Added item to cart"
     create_failed: "Can not add item to cart"

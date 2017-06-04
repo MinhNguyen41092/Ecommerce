@@ -1,0 +1,17 @@
+<table class="table table-hover table-bordered" style="width:600px">
+  <tr>
+    <th>Title</th>
+    <th>Price</th>
+    <th>Admin</th>
+    <th>Action</th>
+  </tr>
+  <% @products.each do |p| %>
+    <tr>
+      <td><%= link_to p.title, edit_product_path(p) %></td>
+      <td><%= p.price %></td>
+      <td><%= p.user.name %></td>
+      <td><%= link_to t("products.delete"), p, method: :delete,
+        data: {confirm: t("products.delete?")}, class: "btn btn-xs btn-danger" %></td>
+    </tr>
+  <% end %>
+</table>

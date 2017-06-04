@@ -12,7 +12,7 @@ module ProductLib
     if search
       Product.where("title || description || price LIKE ?", "%#{search}%")
     else
-      Product.valid_products
+      Product.valid_products.not_imported
     end
   end
 
@@ -25,23 +25,23 @@ module ProductLib
 
   def filter_products filter
     if filter == t("filter.all")
-      Product.valid_products
+      Product.valid_products.not_imported
     elsif filter == t("filter.hot")
-      Product.valid_products.hot
+      Product.valid_products.not_imported.hot
     elsif filter == t("filter.most_viewed")
-      Product.valid_products.most_viewed
+      Product.valid_products.not_imported.most_viewed
     elsif filter == t("filter.rating")
-      Product.valid_products.rating
+      Product.valid_products.not_imported.rating
     elsif filter == t("filter.oldest")
-      Product.valid_products.order_oldest
+      Product.valid_products.not_imported.order_oldest
     elsif filter == t("filter.newest")
-      Product.valid_products.order_newest
+      Product.valid_products.not_imported.order_newest
     elsif filter == t("filter.alph")
-      Product.valid_products.alph
+      Product.valid_products.not_imported.alph
     elsif filter == t("filter.price_high_to_low")
-      Product.valid_products.price_high_to_low
+      Product.valid_products.not_imported.price_high_to_low
     elsif filter == t("filter.price_low_to_high")
-      Product.valid_products.price_low_to_high
+      Product.valid_products.not_imported.price_low_to_high
     end
   end
 end

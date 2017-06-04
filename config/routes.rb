@@ -12,7 +12,13 @@ Rails.application.routes.draw do
       put "set_admin"
     end
   end
-  resources :products
+  resources :products do
+    collection do
+      post :import
+      get :imports
+    end
+  end
+
   resources :carts
   resources :line_items
   resources :orders

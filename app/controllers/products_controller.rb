@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
   include ProductLib
-  before_action :load_product, except: [:index, :new, :create]
+  before_action :load_product, except: [:index, :new, :create, :import, :imports]
   before_action :verify_admin, only: [:edit, :update, :destroy]
-  before_action :load_categories, except: :destroy
+  before_action :load_categories, except: [:destroy, :import]
   before_filter :log_impression, only: :show
 
   def index
@@ -51,6 +51,17 @@ class ProductsController < ApplicationController
     else
       render :show
     end
+  end
+
+  def imports
+    @products = Product.imported.page(params[:page]).
+      per Settings.items_per_pages
+  end
+
+  def import
+    Product.import params[:file]
+    flash[:success] = t "products.imported"
+    redirect_to imports_products_path
   end
 
   private

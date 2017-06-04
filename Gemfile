@@ -22,8 +22,8 @@ gem "figaro"
 gem "ratyrate"
 gem "carrierwave"
 gem "mini_magick"
-# Use Redis adapter to run Action Cable in production
 gem "redis", "~> 3.0"
+gem "roo"
 # Use Capistrano for deployment
 # gem "capistrano-rails", group: :development
 
