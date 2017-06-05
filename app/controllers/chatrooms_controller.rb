@@ -1,6 +1,6 @@
 class ChatroomsController < ApplicationController
   before_action :authorize_chatroom, only: :show
-  before_action :verify_admin, only: :index
+  before_action :verify_admin, only: [:index, :destroy]
 
   def index
     @chatrooms = Chatroom.newest.page(params[:page]).
@@ -23,6 +23,16 @@ class ChatroomsController < ApplicationController
 
   def show
     @message = Message.new
+  end
+
+  def destroy
+    @chatroom = Chatroom.find_by(name: params[:name])
+    if @chatroom.destroy
+      flash[:success] = "Chatroom has been deleted"
+    else
+      flash[:danger] = "Couldn't delete chatroom"
+    end
+    redirect_to chatrooms_path
   end
 
   private
