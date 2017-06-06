@@ -11,11 +11,12 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree ./channels
 //= require chatrooms
 //= require jquery.raty
 //= require ratyrate
+//= require turbolinks
 //= require_tree .

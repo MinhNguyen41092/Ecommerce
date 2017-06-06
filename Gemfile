@@ -24,6 +24,7 @@ gem "carrierwave"
 gem "mini_magick"
 gem "redis", "~> 3.0"
 gem "roo"
+gem "jquery-turbolinks"
 # Use Capistrano for deployment
 # gem "capistrano-rails", group: :development
 

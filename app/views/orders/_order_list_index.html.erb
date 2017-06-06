@@ -16,9 +16,10 @@
         <td><%= number_to_currency total_cost(order),
           unit: Settings.unit, format: "%n %u", precision: 0 %></td>
         <td class="status">
-          <%= form_for order, method: :patch, remote: true do |f| %>
-            <%= f.select :status, Order.statuses.keys, prompt: order.status %>
-            <%= f.submit t("orders.up_status"), class: "btn btn-xs btn-primary" %>
+          <%= form_for order, method: :patch, remote: true,
+            html: {id: "update-status"} do |f| %>
+            <%= f.select :status, Order.statuses.keys,
+              prompt: order.status %>
           <% end %>
         </td>
         <td class="del-order">
