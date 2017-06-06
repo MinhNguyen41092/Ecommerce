@@ -43,7 +43,7 @@ class UsersController < ApplicationController
     @user = User.find_by id: params[:id]
     if @user.destroy
       flash[:success] = t "users.deleted"
-      redirect_back
+      redirect_to root_path
     else
       render :show
     end

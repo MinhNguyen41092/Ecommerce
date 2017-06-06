@@ -52,7 +52,8 @@ class Product < ApplicationRecord
       header = spreadsheet.row(1)
       (2..spreadsheet.last_row).each do |i|
         row = Hash[[header, spreadsheet.row(i)].transpose]
-        Product.create!(row.to_hash)
+        @product = Product.new(row.to_hash)
+        next if !@product.save
       end
     end
 
